@@ -33,7 +33,7 @@ export const updateCacheAfterSave = (
       },
       data: {
         getFeedbacks: {
-          feedbacks: [data.saveFeedback.feedback, ...feedbacks],
+          feedbacks: [data.saveFeedback.feedback, ...feedbacks.slice(1)],
           totalCount: data.saveFeedback.totalCount,
         },
       },
