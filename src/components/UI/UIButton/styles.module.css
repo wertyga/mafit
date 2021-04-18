@@ -29,3 +29,9 @@
 .success {
   background-color: var(--color-green-2);
 }
+
+@media screen and (max-width: 800px) {
+  .button {
+    font-size: var(--font-size-r);
+  }
+}

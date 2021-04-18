@@ -8,6 +8,13 @@
   display: none;
 }
 
+.iconLabel {
+  color: var(--color-grey-3);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-medium);
+  margin-top: var(--space-3);
+}
+
 .label {
   position: absolute;
   width: 100%;
@@ -35,4 +42,10 @@
   top: -1rem;
   right: -1rem;
   z-index: 3;
+}
+
+@media screen and (max-width: 800px) {
+  .iconLabel {
+    font-size: var(--font-size-s);
+  }
 }

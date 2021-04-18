@@ -1,3 +1,5 @@
+import React from 'react';
+import { useRouter } from 'next/router';
 import { gfMenu } from 'goldfish/gfMenu';
 import { UIBuffer } from 'components/UI/UIBuffer/UIBuffer';
 import { Logo } from 'components/Logo/Logo';
@@ -8,6 +10,7 @@ import { UserCabinetLink } from '../UserCabinetLink/UserCabinetLink';
 import s from './styles.module.css';
 
 export const MenuDesktop = () => {
+  const router = useRouter();
   return (
     <div className={s.wrapper}>
       <div className="container flex align-center">
@@ -21,7 +24,7 @@ export const MenuDesktop = () => {
           <UserCabinetLink messagesCount={1} />
         </div>
       </div>
-      <UIBuffer />
+      {/*{!/profile/.test(router.pathname) && <UIBuffer />}*/}
     </div>
   );
 };

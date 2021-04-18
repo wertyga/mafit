@@ -1,0 +1,35 @@
+.upTitles {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.upTitle {
+  width: 6rem;
+  text-align: center;
+}
+.upTitle:first-child {
+  margin-right: 6rem;
+}
+
+.upTitlesMobile {
+  display: none;
+}
+
+.inputs {
+  display: flex;
+}
+
+@media screen and (max-width: 800px) {
+  .upTitles {
+    display: none;
+  }
+
+  .upTitlesMobile {
+    display: flex;
+    margin-bottom: var(--space-2);
+  }
+
+  .inputs {
+    flex-direction: column;
+  }
+}

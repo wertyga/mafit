@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import _noop from 'lodash/noop';
-import classnames, { Mapping } from 'classnames';
+import classnames from 'classnames';
 import { getDateMonth } from 'utils/date';
 import { UIIcon } from 'components/UI/UIIcons/UIIcon';
+
+import { ClassName } from 'types/root';
 
 import s from './styles.module.css';
 
@@ -11,7 +13,7 @@ type Props = {
   title: string;
   description?: string;
   status?: any;
-  className?: Mapping;
+  className?: ClassName;
   onOpen?: (o?: boolean) => void;
   scrollOpen?: boolean;
   locked?: boolean;
@@ -72,7 +74,7 @@ export const UIListItem: React.FC<Props> = ({
           {isOpen && <UIIcon icon="closeCircle" className={s.closeIconDesk} />}
         </div>
       </div>
-      {isOpen && <div className="container pt-4 pb-8">{children}</div>}
+      {isOpen && <div className="container pt-5 pb-8">{children}</div>}
     </div>
   );
 };

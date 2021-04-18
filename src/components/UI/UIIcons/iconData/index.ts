@@ -9,3 +9,4 @@ export { default as closeCircle } from './closeCircle';
 export { default as play } from './play';
 export { default as starEmpty } from './starEmpty';
 export { default as starFilled } from './starFilled';
+export { default as arrowRight } from './arrowRight';

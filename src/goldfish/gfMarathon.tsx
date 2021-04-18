@@ -2,6 +2,7 @@ export const gfMarathon = {
   startTitle: 'Старт марафона',
   startDescription: 'Добавьте свои данные "До"',
   uploadPhotoBefore: 'Загрузите фото "До"',
+  uploadPhotoAfter: 'Загрузите фото "После"',
   uploadVideoBefore: 'Загрузите видео "До"',
   photoFront: 'Фото спереди',
   photoRear: 'Фото сзади',
@@ -26,6 +27,11 @@ export const gfMarathon = {
       },
     },
     bodyData: {
+      weight: {
+        image: '/manData/weight.png',
+        description: 'Ваш вес',
+        unit: 'кг',
+      },
       abs: {
         image: '/manData/abs.png',
         description: 'Обхват талии',
@@ -71,11 +77,8 @@ export const gfMarathon = {
           ],
         },
       },
-      weight: {
-        image: '/manData/abs.png',
-        description: 'Ваш вес',
-        unit: 'кг',
-      },
     },
   },
+  compareResultsTitle: 'Сравнение результатов',
+  compareResultsDescription: 'Отследите свой прогресс',
 };

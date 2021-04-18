@@ -44,7 +44,7 @@ export const gfMenu = {
     },
     {
       title: 'Отчет',
-      href: '/report',
+      href: '/profile/report',
     },
     {
       title: 'Сообщения',

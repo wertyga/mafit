@@ -2,7 +2,11 @@
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   background-color: var(--color-main);
-  padding: var(--space-2) var(--space-5);
+  padding: var(--space-2) var(--space-4);
+  position: relative;
+}
+.light {
+  background-color: var(--color-light);
 }
 .menuWrapper :global(.logo) {
   justify-content: center;

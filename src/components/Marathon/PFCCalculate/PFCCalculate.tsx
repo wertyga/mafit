@@ -96,9 +96,11 @@ export const PFCCalculate: React.FC<Props> = ({
         </div>
       </div>
 
-      <UIButton className="mt-6" disabled={disableCalculate}>
-        {gfCommon.calculate}
-      </UIButton>
+      <div className="flex justify-center-m">
+        <UIButton className="mt-6" disabled={disableCalculate} round>
+          {gfCommon.calculate}
+        </UIButton>
+      </div>
 
       <h4 className="mt-8 mb-4">{`${gfCommon.results}:`}</h4>
       <div className={s.pfcResult}>

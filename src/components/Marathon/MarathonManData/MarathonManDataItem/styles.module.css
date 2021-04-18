@@ -8,17 +8,22 @@
 
 .image {
   margin-right: var(--space-8);
+  width: 4.5rem;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  width: 50%;
-  justify-content: flex-end;
+}
+
+.meta {
+  display: flex;
+  flex-grow: 2;
 }
 
 .extendTitle {
   display: flex;
+  justify-content: center;
   flex-grow: 2;
   color: var(--color-accent);
   font-size: var(--font-size-m);
@@ -42,4 +47,30 @@
 }
 .extendDescription {
   margin-bottom: var(--space-4);
+}
+
+@media screen and (max-width: 800px) {
+  .dataItem {
+    flex-wrap: wrap;
+  }
+  .image {
+    margin-right: var(--space-6);
+    margin-bottom: var(--space-2);
+    width: 3.2rem;
+  }
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .extendContent {
+    flex-direction: column;
+    padding: var(--space-4) 0;
+  }
+  .extendDescriptions {
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+  .extendContent img {
+    width: 100%;
+  }
 }

@@ -1,0 +1,5 @@
+.topBuffer {
+  display: flex;
+  width: 100%;
+  height: var(--space-4);
+}

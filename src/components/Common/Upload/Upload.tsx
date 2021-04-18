@@ -5,13 +5,17 @@ import { UIIcon } from 'components/UI/UIIcons/UIIcon';
 import { UIVideo } from 'components/UI/UIVideo/UIVideo';
 import { getBase64 } from 'utils/file';
 
+import { ClassName } from 'types/root';
+
 import s from './styles.module.css';
 
 type Props = {
   name: string;
   aspectRation?: number;
   video?: boolean;
-  onChange?: (f: File, p: string, n: string) => void;
+  label?: string;
+  className?: ClassName;
+  onChange?: (f: File, n: string, p: string) => void;
 };
 
 export const Upload: React.FC<Props> = ({
@@ -19,6 +23,8 @@ export const Upload: React.FC<Props> = ({
   onChange = _noop,
   aspectRation = 0.55,
   video,
+  label,
+  className,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>();
   const [state, setState] = useState({
@@ -31,7 +37,7 @@ export const Upload: React.FC<Props> = ({
     const file = files[0];
     const filePreview = (await getBase64(file)) as string;
     setState({ preview: filePreview, file });
-    onChange(file, filePreview, name);
+    onChange(file, name, filePreview);
   };
 
   const handleDelete = () => {
@@ -42,7 +48,7 @@ export const Upload: React.FC<Props> = ({
 
   return (
     <div
-      className={classnames({
+      className={classnames(className, {
         [s.wrapper]: true,
       })}
       style={{
@@ -62,7 +68,12 @@ export const Upload: React.FC<Props> = ({
       )}
 
       <label htmlFor={`upload-${name}`} className={s.label}>
-        {!state.preview && <UIIcon icon="download" />}
+        {!state.preview && (
+          <div className="flex-column justify-between align-center">
+            <UIIcon icon="download" />
+            {!!label && <span className={s.iconLabel}>{label}</span>}
+          </div>
+        )}
         <input
           type="file"
           ref={fileInputRef}

@@ -6,11 +6,12 @@ import s from './styles.module.css';
 type Props = {
   image: string;
   description?: string;
-  value: string;
-  name: string;
+  value?: string;
+  name?: string;
   unit?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   extendTitle?: string;
+  inputSlot?: React.ReactElement;
   extend?: {
     image: string;
     description: string[];
@@ -26,6 +27,7 @@ export const MarathonManDataItem: React.FC<Props> = ({
   unit,
   extendTitle,
   extend,
+  inputSlot,
 }) => {
   const [isOpen, setOpen] = useState(false);
 
@@ -34,12 +36,10 @@ export const MarathonManDataItem: React.FC<Props> = ({
   return (
     <div>
       <div className={s.dataItem}>
-        <div className="flex align-center">
-          <img src={image} alt={description} className={s.image} />
-          <h5>{description}</h5>
-        </div>
+        <img src={image} alt={description} className={s.image} />
 
-        <div className={s.actions}>
+        <div className={s.meta}>
+          <h5>{description}</h5>
           {!!extendTitle && (
             <div
               className={s.extendTitle}
@@ -49,15 +49,20 @@ export const MarathonManDataItem: React.FC<Props> = ({
               {extendTitle}
             </div>
           )}
-          <UIInput
-            numeric
-            value={value}
-            onChange={onChange}
-            name={name}
-            postfix={unit}
-            mini
-            accent
-          />
+        </div>
+
+        <div className={s.actions}>
+          {inputSlot || (
+            <UIInput
+              value={value}
+              onChange={onChange}
+              name={name}
+              postfix={unit}
+              numeric
+              mini
+              accent
+            />
+          )}
         </div>
       </div>
       {isOpen && extend && (

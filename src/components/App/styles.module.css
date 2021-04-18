@@ -1,6 +1,40 @@
 .wrapper {
+  background-color: var(--color-main);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-main);
+  padding: var(--space-6) 0;
+}
+
+.noTitle {
+  min-height: 5rem;
+}
+
+.header {
+  background-color: var(--color-light);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  background-color: var(--color-light);
+  margin-bottom: var(--space-8);
+}
+
+@media screen and (max-width: 800px) {
+  .title {
+    font-size: var(--font-size-xxl);
+    padding: var(--space-3) 0;
+  }
+  .noTitle {
+    display: none;
+  }
 }

@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { MenuItem } from 'types/menu';
-
 import s from './styles.module.css';
 
-type Props = MenuItem & {
+type Props = {
+  title: string;
+  href: string;
   onClose: () => void;
 };
 
@@ -16,7 +16,7 @@ export const UserCabinetMenuItem: React.FC<Props> = ({
 }) => (
   <Link href={href}>
     <a role="presentation" className={s.link} onClick={onClose}>
-      <h4>{title}</h4>
+      <h4 className="mb-0">{title}</h4>
     </a>
   </Link>
 );

@@ -1,8 +1,9 @@
 import React, { ChangeEvent } from 'react';
 import { gfMarathon } from 'goldfish/gfMarathon';
 import { MarathonManDataItem } from './MarathonManDataItem/MarathonManDataItem';
+import { MarathonBodyData } from './MarathonBodyData/MarathonBodyData';
 
-type Props = {
+export type Props = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   state: Partial<
     Record<
@@ -32,21 +33,7 @@ export const MarathonManData: React.FC<Props> = ({ onChange, state }) => {
       )}
 
       <h4 className="mt-8">{gfMarathon.enterDataBefore}</h4>
-      {Object.entries(gfMarathon.manData.bodyData).map(
-        ([key, { image, description, unit, extend, extendTitle }]) => (
-          <MarathonManDataItem
-            key={key}
-            name={key}
-            unit={unit}
-            image={image}
-            description={description}
-            onChange={onChange}
-            value={state[key]}
-            extendTitle={extendTitle}
-            extend={extend}
-          />
-        )
-      )}
+      <MarathonBodyData state={state} onChange={onChange} />
     </div>
   );
 };

@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const MarathonUpload: React.FC<Props> = ({ onChange }) => {
-  const handleChange = (image: File, preview: string, name: string) => {
+  const handleChange = (image: File, name: string, preview: string) => {
     onChange(image, preview, name);
   };
 

@@ -13,7 +13,7 @@ import { MarathonUpload } from '../MarathonUpload/MarathonUpload';
 import { MarathonManData } from '../MarathonManData/MarathonManData';
 import { PFCCalculate } from '../PFCCalculate/PFCCalculate';
 
-import { collectManDataKeys } from './helpers';
+import { bodyDataInitState, commonDataInitState } from './helpers';
 
 export const MarathonStart = () => {
   const {
@@ -32,13 +32,10 @@ export const MarathonStart = () => {
       activity: '',
       aim: '',
     },
-    manData: collectManDataKeys().reduce(
-      (acc, key) => ({
-        ...acc,
-        [key]: '',
-      }),
-      {}
-    ),
+    manData: {
+      ...bodyDataInitState,
+      ...commonDataInitState,
+    },
   });
 
   const handleFileChange = (image: File, preview: string, name: string) => {
@@ -81,8 +78,8 @@ export const MarathonStart = () => {
       <MarathonManData state={state.manData} onChange={handleManDataChange} />
       <PFCCalculate {...state.pfc} onSelect={handleChangePFC} />
 
-      <div className="row">
-        <UIButton onClick={handleSave} className="mt-6">
+      <div className="row flex justify-center-m">
+        <UIButton onClick={handleSave} className="mt-6" round>
           {gfCommon.save}
         </UIButton>
       </div>

@@ -1,0 +1,9 @@
+.buffer {
+  display: flex;
+  width: 1px;
+  background-color: var(--color-grey-2);
+}
+
+.uploadItem {
+  width: 48%;
+}

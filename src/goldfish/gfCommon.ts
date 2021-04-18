@@ -6,5 +6,8 @@ export const gfCommon = {
   results: 'Результаты',
   yes: 'Да',
   no: 'Нет',
+  before: 'До',
+  after: 'После',
   requiredMark: '- * обязательное поле',
+  loadPhoto: 'Загрузите фото',
 };
