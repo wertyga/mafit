@@ -1,0 +1,4 @@
+.progressLink {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}

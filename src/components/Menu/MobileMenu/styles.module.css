@@ -1,0 +1,20 @@
+.menuWrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  background-color: var(--color-main);
+  padding: var(--space-2) var(--space-5);
+}
+.menuWrapper :global(.logo) {
+  justify-content: center;
+}
+.userCabinetLink {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media screen and (min-width: 801px) {
+  .container {
+    display: none;
+  }
+}

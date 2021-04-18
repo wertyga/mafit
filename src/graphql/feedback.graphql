@@ -1,0 +1,38 @@
+fragment FeedbackResponse on Feedback {
+	id
+	status
+	results
+	foods
+	dayResult
+	date
+	user {
+		firstName
+		lastName
+		avatar
+	}
+}
+
+query getFeedbacks($trainingId: ID!, $limit: Int!, $offset: Int!) {
+	getFeedbacks(trainingId: $trainingId, limit: $limit, offset: $offset) {
+		feedbacks {
+			...FeedbackResponse
+		}
+		totalCount
+	}
+}
+query getUserFeedback($trainingId: String!, $token: String!) {
+	getUserFeedback(token: $token, trainingId: $trainingId) {
+		...FeedbackResponse
+		rating
+	}
+}
+
+mutation saveFeedback($trainingId: ID!, $status: Boolean, $results: String!, $foods: String!, $dayResult: String!, $token: String!, $rating: Int!) {
+	saveFeedback(trainingId: $trainingId, status: $status, results: $results, foods: $foods, dayResult: $dayResult, token: $token, rating: $rating) {
+		feedback {
+			...FeedbackResponse
+			rating
+		}
+		totalCount
+	}
+}

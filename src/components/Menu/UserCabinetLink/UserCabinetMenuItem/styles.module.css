@@ -1,0 +1,8 @@
+.link {
+  padding: var(--space-3) var(--space-5);
+  display: flex;
+  font-weight: var(--font-weight-semibold);
+}
+.link:hover {
+  background-color: var(--color-grey-light);
+}

@@ -1,0 +1,18 @@
+.textarea {
+  width: 100%;
+  resize: none;
+  outline: none;
+  border-radius: var(--textarea-radius);
+  border: 1px solid var(--color-grey-3);
+  height: 8em;
+  padding: var(--space-4) var(--space-5);
+}
+
+.title {
+  display: flex;
+}
+
+.required {
+  color: var(--color-accent);
+  margin-left: var(--space-3);
+}

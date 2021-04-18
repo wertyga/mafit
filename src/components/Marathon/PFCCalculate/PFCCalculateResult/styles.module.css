@@ -1,0 +1,32 @@
+.description {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2) var(--space-5);
+  border: 1px dashed var(--color-grey-2);
+}
+.description > * {
+  display: flex;
+  flex-direction: column;
+}
+.description p, .description span {
+  margin-bottom: var(--space-3);
+}
+.description p {
+  margin-top: var(--space-3);
+  font-size: var(--font-size-r);
+  font-weight: var(--font-weight-medium);
+}
+.description span {
+  font-size: var(--font-size-r);
+  font-weight: var(--font-weight-regular);
+  padding-left: var(--space-4);
+  position: relative;
+}
+.description span:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--space-4);
+  height: 100%;
+}

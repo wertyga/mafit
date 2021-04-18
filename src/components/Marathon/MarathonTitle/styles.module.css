@@ -1,0 +1,14 @@
+.date {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+}
+
+.title {
+  margin-bottom: var(--space-5);
+}
+
+@media screen and (max-width: 800px) {
+  .title {
+    font-size: var(--font-size-l);
+  }
+}

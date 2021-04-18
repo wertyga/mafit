@@ -1,0 +1,21 @@
+query getMarathon($id: String!) {
+	marathon(id: $id) {
+		id
+		title
+		description
+		dateStart
+		dateEnd
+		progressIn
+		trainings {
+			id
+			title
+			description
+			video
+			status
+			date
+			dayFood {
+				id
+			}
+		}
+	}
+}

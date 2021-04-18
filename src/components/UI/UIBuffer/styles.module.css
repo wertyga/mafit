@@ -1,0 +1,7 @@
+.wrapper {
+  min-height: 5rem;
+  background-color: var(--color-main);
+}
+.mini {
+  min-height: 2rem;
+}

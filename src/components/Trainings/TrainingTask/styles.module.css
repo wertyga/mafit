@@ -1,0 +1,7 @@
+.answersLink {
+  color: var(--color-accent);
+  text-decoration: underline;
+  font-weight: var(--font-weight-semibold);
+  margin-top: var(--space-6);
+  cursor: pointer;
+}

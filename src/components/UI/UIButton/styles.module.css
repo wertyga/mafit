@@ -1,0 +1,31 @@
+.button {
+  width: 11.5em;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-light);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-m);
+  background-color: var(--color-accent);
+  border-radius: var(--textarea-radius);
+  cursor: pointer;
+  padding-bottom: 2px;
+  border: none;
+  outline: none;
+}
+.button:hover {
+  opacity: 0.9;
+}
+.button:disabled {
+  background-color: var(--color-grey-2);
+  cursor: not-allowed;
+}
+
+.round {
+  border-radius: var(--button-radius);
+}
+
+.success {
+  background-color: var(--color-green-2);
+}

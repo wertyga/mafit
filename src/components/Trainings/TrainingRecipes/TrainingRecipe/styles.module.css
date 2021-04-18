@@ -1,0 +1,69 @@
+.recipe {
+  padding: var(--space-6) 0;
+}
+.recipe:not(:last-child) {
+  border-bottom: 1px solid var(--color-grey-1);
+}
+
+.image {
+  width: 50%;
+  padding-right: var(--space-9);
+}
+.image img {
+  width: 100%;
+}
+
+.mealType {
+  color: var(--color-blue);
+}
+
+.recipeMeta {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.foodstuff {
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-2);
+}
+
+.pfcItem {
+  color: var(--color-grey-3);
+  font-size: var(--font-size-m);
+}
+.pfcItem:not(:last-child) {
+  margin-right: var(--space-2);
+}
+
+.cookMethod {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-medium);
+  margin: var(--space-4) 0;
+  cursor: pointer;
+}
+
+.description > * {
+  font-size: var(--font-size-m);
+}
+.description:not(:last-child) {
+  margin-bottom: var(--space-4);
+}
+
+.recipeContent {
+  display: flex;
+}
+
+@media screen and (max-width: 801px) {
+  .recipeContent {
+    flex-direction: column;
+  }
+  .image {
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: var(--space-2);
+  }
+  .recipeMeta {
+    width: 100%;
+  }
+}

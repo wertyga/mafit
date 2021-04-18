@@ -1,0 +1,18 @@
+query getDayFood($dayFoodId: ID!) {
+	dayFood(dayFoodId: $dayFoodId) {
+		type
+		recipes {
+			title
+			description
+			image
+			foods {
+				foodstuff {
+					title
+					unit
+				}
+				qt
+			}
+			pfc
+		}
+	}
+}

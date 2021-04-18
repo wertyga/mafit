@@ -1,0 +1,45 @@
+.dataItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-grey-2);
+}
+
+.image {
+  margin-right: var(--space-8);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: flex-end;
+}
+
+.extendTitle {
+  display: flex;
+  flex-grow: 2;
+  color: var(--color-accent);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+}
+
+.extendContent {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-8) 0;
+}
+.extendContent img {
+  width: 47%;
+}
+.extendDescriptions {
+  width: 47%;
+}
+.extendDescriptions span {
+  font-size: var(--font-size-r);
+}
+.extendDescription {
+  margin-bottom: var(--space-4);
+}

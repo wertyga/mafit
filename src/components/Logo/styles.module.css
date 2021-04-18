@@ -1,0 +1,7 @@
+.logo {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+}

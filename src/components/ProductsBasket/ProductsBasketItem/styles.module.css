@@ -1,0 +1,31 @@
+.product {
+  display: flex;
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.type {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-grey-1);
+  font-size: var(--font-size-m);
+}
+
+.description {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-4) var(--space-4) 0;
+  border-bottom: 1px dashed var(--color-grey-1);
+}
+
+.amount {
+  width: 20%;
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-grey-2);
+}

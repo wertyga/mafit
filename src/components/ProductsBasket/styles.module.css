@@ -1,0 +1,27 @@
+.productTitle, .weightTitle {
+  background-color: var(--color-grey-2);
+  color: var(--color-grey-3);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2) 0;
+}
+
+.productTitle {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding-left: var(--space-3);
+}
+
+.weightTitle {
+  width: 20%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.download {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-m);
+  color: var(--color-accent);
+  text-decoration: underline;
+}

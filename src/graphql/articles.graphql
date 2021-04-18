@@ -1,0 +1,8 @@
+query getArticle($trainingId: String, $articleId: ID) {
+	getArticle(trainingId: $trainingId, articleId: $articleId) {
+		id
+		image
+		title
+		description
+	}
+}

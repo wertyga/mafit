@@ -1,0 +1,32 @@
+.content {
+  position: relative;
+  background-color: var(--color-light);
+  width: var(--space-8);
+  min-width: var(--space-8);
+  height: var(--space-8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-main);
+}
+.content :global(.UI__badge) {
+  position: absolute;
+  top: calc(var(--space-2) * -1);
+  left: calc(var(--space-2) * -1);;
+}
+
+.wrapper :global(.UI__modal__content) {
+  width: 30%;
+}
+
+@media screen and (max-width: 801px) {
+  .content :global(.UI__badge) {
+    position: absolute;
+    top: calc(var(--space-1) * -1);
+    left: calc(var(--space-1) * -1);;
+  }
+  .wrapper :global(.UI__modal__content) {
+    width: 70%;
+  }
+}

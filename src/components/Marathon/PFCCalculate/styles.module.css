@@ -1,0 +1,15 @@
+.pfcResult {
+  display: flex;
+}
+.pfcResult > * {
+  width: 50%;
+}
+
+@media screen and (max-width: 801px) {
+  .pfcResult {
+    flex-direction: column;
+  }
+  .pfcResult > * {
+    width: 100%;
+  }
+}

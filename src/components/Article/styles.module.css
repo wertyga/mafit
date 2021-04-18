@@ -1,0 +1,17 @@
+.article {
+  display: flex;
+}
+
+.content {
+  width: 60%;
+  padding-left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  margin-bottom: var(--space-2);
+}
+
+.preview {
+  width: 40%;
+}

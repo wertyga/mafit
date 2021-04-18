@@ -1,0 +1,17 @@
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  margin-right: var(--space-5);
+  font-weight: var(--font-weight-medium);
+}
+
+.stars {
+  display: flex;
+  cursor: pointer;
+}
+.stars > *:not(:last-child) {
+  margin-right: var(--space-1);
+}

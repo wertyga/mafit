@@ -1,0 +1,29 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.menu::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.item {
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--color-main);
+  cursor: pointer;
+}
+
+.chosen {
+  border-bottom: 4px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+@media screen and (max-width: 801px) {
+  .menu {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+}
