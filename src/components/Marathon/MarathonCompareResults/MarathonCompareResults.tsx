@@ -6,12 +6,11 @@ import { gfProgressItem } from 'goldfish/gfProgressItem';
 import { UIListItem } from 'components/UI/UIListItem/UIListItem';
 import { UIButton } from 'components/UI/UIButton/UIButton';
 
-import { TRAINING_STATUSES } from 'types/training';
+import { Training_Statuses } from 'graphql/types';
 
 import { MarathonCompareResultsBody } from '../MarathonCompareResults/MarathonCompareResultsBody/MarathonCompareResultsBody';
 import { MarathonResultsUpload } from './MarathonResultsUpload/MarathonResultsUpload';
-
-import { getInitialBodyState } from './helpers';
+import { bodyDataInitState } from '../MarathonStart/helpers';
 
 import s from './styles.module.css';
 
@@ -21,7 +20,7 @@ export const MarathonCompareResults = ({ date }) => {
       photoBefore: '',
       photoAfter: '',
     },
-    body: getInitialBodyState(),
+    body: bodyDataInitState,
   });
 
   const handleChangeFile = (file: File, name: string) => {
@@ -29,10 +28,9 @@ export const MarathonCompareResults = ({ date }) => {
   };
 
   const handleBodyDataChange = ({ target: { name, value } }) => {
-    const [key, type] = name.split('/');
     setState(prev => ({
       ...prev,
-      body: { ...prev.body, [key]: { ...prev.body[key], [type]: value } },
+      body: { ...prev.body, [name]: value },
     }));
   };
 
@@ -51,7 +49,7 @@ export const MarathonCompareResults = ({ date }) => {
         title={gfMarathon.compareResultsTitle}
         description={gfMarathon.compareResultsDescription}
         date={date}
-        status={gfTraining.status[TRAINING_STATUSES.INPUT]} // MOCK
+        status={gfTraining.status[Training_Statuses.Input]} // MOCK
         className={s.wrapper}
       >
         <div className="row">

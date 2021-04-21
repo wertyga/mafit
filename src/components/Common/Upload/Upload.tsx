@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
 import _noop from 'lodash/noop';
 import { UIIcon } from 'components/UI/UIIcons/UIIcon';
@@ -15,6 +15,7 @@ type Props = {
   video?: boolean;
   label?: string;
   className?: ClassName;
+  urlSrc?: string;
   onChange?: (f: File, n: string, p: string) => void;
 };
 
@@ -25,6 +26,7 @@ export const Upload: React.FC<Props> = ({
   video,
   label,
   className,
+  urlSrc,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>();
   const [state, setState] = useState({
@@ -45,6 +47,11 @@ export const Upload: React.FC<Props> = ({
     onChange('', '', name);
     fileInputRef.current.value = '';
   };
+
+  useEffect(() => {
+    if (!urlSrc) return;
+    setState(prev => ({ ...prev, preview: urlSrc }));
+  }, [urlSrc]);
 
   return (
     <div

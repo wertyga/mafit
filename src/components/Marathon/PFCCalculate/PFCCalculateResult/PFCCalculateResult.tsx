@@ -1,42 +1,38 @@
 import React from 'react';
 import { gfPFC } from 'goldfish/gfPFC';
 
-import { AIM_TYPES, PFCCalculateFormulaType } from 'types/pfc';
+import { PfcCalculated, Aim, PfcCalculateFormula } from 'graphql/types';
 
 import s from './styles.module.css';
 
-type Props = {
-  calculate: PFCCalculateFormulaType;
-  calNorma: number;
-  minCal: number;
-  recommendCal: number;
-  dailyProtein: number;
-  dailyFats: number;
-  dailyCarbs: number;
-  type: AIM_TYPES;
+type Props = PfcCalculated & {
+  aim: Aim;
+  calculateFormula: Omit<PfcCalculateFormula, '__typename'>;
 };
 
 export const PFCCalculateResult: React.FC<Props> = ({
-  calNorma,
+  normaCal,
   minCal,
   recommendCal,
   dailyProtein,
   dailyFats,
   dailyCarbs,
-  calculate,
-  type,
+  calculateFormula,
+  aim,
 }) => {
-  const result = Object.entries(calculate).map(([key, cal]) =>
-    gfPFC.calculate(key, cal)
-  );
+  const result = Object.entries(
+    calculateFormula as Omit<PfcCalculateFormula, '__typename'>
+  ).map(([key, cal]) => gfPFC.calculate(key, cal));
   return (
     <div className={s.description}>
       <div>
         <p>{`${gfPFC.dailyCal}:`}</p>
-        <span>{gfPFC.byFormula(calNorma)}</span>
+        <span>{gfPFC.byFormula(normaCal)}</span>
       </div>
       <div>
-        <p>{`${gfPFC.recommendations[type]}:`}</p>
+        <p
+          dangerouslySetInnerHTML={{ __html: `${gfPFC.recommendations[aim]}:` }}
+        />
         <span>{gfPFC.minCal(minCal)}</span>
         <span>{gfPFC.recommendCal(recommendCal)}</span>
         <span>{gfPFC.dailyProtein(dailyProtein)}</span>

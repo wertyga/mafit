@@ -1,14 +1,13 @@
-import { TRAINING_STATUSES } from 'types/training';
+import { Training_Statuses } from 'graphql/types';
 import { UIIcon } from 'components/UI/UIIcons/UIIcon';
 
 export const gfTraining = {
   status: {
-    [TRAINING_STATUSES.FAILED]: 'Не выполнено',
-    [TRAINING_STATUSES.INPUT]: 'Введите данные',
-    [TRAINING_STATUSES.LOCKED]: <UIIcon icon="lock" />,
-    [TRAINING_STATUSES.SUCCESS]: <UIIcon icon="success" />,
-    [TRAINING_STATUSES.SUCCESS]: <UIIcon icon="success" />,
-    [TRAINING_STATUSES.ATTENTION]: <UIIcon icon="attention" />,
+    [Training_Statuses.Failed]: 'Не выполнено',
+    [Training_Statuses.Input]: 'Введите данные',
+    [Training_Statuses.Locked]: <UIIcon icon="lock" />,
+    [Training_Statuses.Success]: <UIIcon icon="success" />,
+    [Training_Statuses.Attention]: <UIIcon icon="attention" />,
   },
   trainingDone: 'Тренировка сделана',
   results: 'Ваши выводы от просмотренного видео',

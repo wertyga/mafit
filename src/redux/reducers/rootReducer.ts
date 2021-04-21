@@ -4,6 +4,8 @@ import { cookiesStore } from './cookiesStore/cookiesStore';
 import { marathonStore } from './marathonStore/marathonStore';
 import { notifyStore } from './notifyStore/notifyStore';
 import { trainingsStore } from './trainingsStore/trainingsStore';
+import { progressStore } from './progressStore/progressStore';
+import { startMarathonStore } from './startMarathonStore/startMarathonStore';
 
 export const rootReducer = combineReducers({
   userStore,
@@ -11,4 +13,6 @@ export const rootReducer = combineReducers({
   marathonStore,
   trainingsStore,
   notifyStore,
+  progressStore,
+  startMarathonStore,
 });

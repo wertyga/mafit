@@ -1,34 +1,29 @@
 import React from 'react';
 import { getRecommendationCal } from 'goldfish/gfPFC';
 import { gfProductsBasket } from 'goldfish/gfProductsBasket';
-import { PFCCalculateFormulaType, AIM_TYPES } from 'types/pfc';
+import { PfcCalculated, Aim } from 'graphql/types';
 
 import { pfcPercentage } from './helpers';
 
 import s from './styles.module.css';
 
-type Props = {
-  calculate: PFCCalculateFormulaType;
-  dailyProtein: number;
-  dailyFats: number;
-  dailyCarbs: number;
-  recommendCal: number;
-  type: AIM_TYPES;
+type Props = PfcCalculated & {
+  aim: Aim;
 };
 
 export const PFCChart: React.FC<Props> = ({
   dailyProtein,
   dailyFats,
   dailyCarbs,
-  calculate,
-  type,
+  calculateFormula,
+  aim,
   recommendCal,
 }) => {
   const [protein, fats, carbs] = pfcPercentage(
     dailyProtein,
     dailyFats,
     dailyCarbs,
-    calculate
+    calculateFormula
   );
   return (
     <div className={s.wrapper}>
@@ -46,7 +41,12 @@ export const PFCChart: React.FC<Props> = ({
           )`,
         }}
       />
-      <p>{getRecommendationCal(type, recommendCal)}</p>
+      <p
+        className="text-center"
+        dangerouslySetInnerHTML={{
+          __html: getRecommendationCal(aim, recommendCal),
+        }}
+      />
       <div className={s.legendContainer}>
         {[protein, fats, carbs].map(({ name, color }) => (
           <div key={name} className={s.legend}>

@@ -1,41 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
-import { TrainingsList } from 'components/Trainings/TrainingsList/TrainingsList';
-import { ProductsBasket } from 'components/ProductsBasket/ProductsBasket';
 import { UILoader } from 'components/UI/UILoader/UILoader';
+import { UIBuffer } from 'components/UI/UIBuffer/UIBuffer';
 
+import useConstructor from 'hooks/useConstructor';
 import useSelector from 'hooks/useSelector';
 import { setMarathonAction } from 'redux/actions/marathon/marathonActions';
 import { setTrainingsAction } from 'redux/actions/tranings/trainingsActions';
+import { setProgressAction } from 'redux/actions/progress/progressActions';
+import { setStartMarathonAction } from 'redux/actions/startMarathon/startMarathonActions';
 import { setMessage } from 'redux/actions/notify/notifyActions';
 
-import { useGetMarathonQuery, Training } from 'graphql/types';
+import { Marathon, Progress, useGetMarathonLazyQuery } from 'graphql/types';
 
-import { MarathonStart } from '../MarathonStart/MarathonStart';
 import { MarathonTitle } from '../MarathonTitle/MarathonTitle';
+import { MarathonList } from '../MarathonList/MarathonList';
 
 const ID = 'fjhlfg'; // MOCK
 
 export const MarathonContainer = () => {
   const {
-    marathonStore: { title, dateStart, dateEnd, progressIn },
-    trainingsStore,
-  } = useSelector(['marathonStore', 'trainingsStore']);
+    marathonStore: { id: marathonId, title, dateStart, dateEnd },
+    userStore: { userId },
+  } = useSelector(['marathonStore', 'userStore']);
 
-  const { loading } = useGetMarathonQuery({
-    variables: { id: ID },
-    onCompleted: ({ marathon: { trainings, ...marathon } }) => {
-      setMarathonAction(marathon);
-      setTrainingsAction(trainings as Training[]);
+  const [getMarathon, { loading }] = useGetMarathonLazyQuery({
+    // fetchPolicy: 'no-cache',
+    onCompleted: ({
+      marathon: { trainings, startMarathon, progress, ...marathon },
+    }) => {
+      setProgressAction((progress as unknown) as Progress[]);
+      setStartMarathonAction(startMarathon);
+      setMarathonAction((marathon as unknown) as Omit<Marathon, 'trainings'>);
+      setTrainingsAction(trainings);
     },
     onError: e => {
       setMessage({ type: 'error', message: e.message });
     },
   });
 
+  useConstructor(() => {
+    if (marathonId) return;
+    getMarathon({ variables: { id: ID, userId } });
+  });
+
   return (
     <div className={classnames({ pending: loading })}>
       {loading && <UILoader />}
+      <UIBuffer className="hide-m" />
       {!loading && !!title && (
         <>
           {!!title && (
@@ -45,9 +57,7 @@ export const MarathonContainer = () => {
               finishAt={dateEnd}
             />
           )}
-          <MarathonStart />
-          <ProductsBasket />
-          <TrainingsList list={trainingsStore} progressIn={progressIn} />
+          <MarathonList />
         </>
       )}
     </div>

@@ -1,0 +1,27 @@
+fragment ProgressFragment on Progress {
+	id
+	date
+	trainingId
+	weight
+	abs
+	butt
+	chest
+	status
+}
+
+query getProgresses($marathonId: ID!, $userId: ID!) {
+	getProgresses(marathonId: $marathonId, userId: $userId) {
+		...ProgressFragment
+	}
+}
+query getProgress($id: ID!) {
+	getProgress(id: $id) {
+		...ProgressFragment
+	}
+}
+
+mutation saveProgress($marathonId: ID!, $userId: ID!, $data: ProgressInput) {
+	saveProgress(marathonId: $marathonId, userId: $userId, data: $data) {
+		...ProgressFragment
+	}
+}

@@ -1,47 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
+import _noop from 'lodash/noop';
+import classnames from 'classnames';
+import _isEmpty from 'lodash/isEmpty';
 import { gfPFC } from 'goldfish/gfPFC';
 import { gfCommon } from 'goldfish/gfCommon';
 import { UICheckbox } from 'components/UI/UICheckbox/UICheckbox';
 import { UIButton } from 'components/UI/UIButton/UIButton';
+
+import { setMessage } from 'redux/actions/notify/notifyActions';
+import {
+  Pfc,
+  useCalculatePfcLazyQuery,
+  PfcCalculated,
+  Gender,
+  Aim,
+} from 'graphql/types';
+
 import { PFCCalculateResult } from './PFCCalculateResult/PFCCalculateResult';
 import { PFCChart } from './PFCChart/PFCChart';
 
 import s from './styles.module.css';
 
-// MOCK
-const MOCK_RESULT = {
-  calNorma: 123,
-  minCal: 123,
-  recommendCal: 228,
-  dailyProtein: 12,
-  dailyFats: 12,
-  dailyCarbs: 12,
-  calculate: {
-    fats: 3,
-    protein: 5,
-    carbs: 7,
-  },
-  type: 'looseFat',
+type Props = {
+  pfc: Pfc;
+  onSelect: (t: string, n: string) => void;
+  onCalculated?: (s: boolean) => void;
 };
 
-type Props = {
-  gender: string;
-  activity: string;
-  aim: string;
-  onSelect: (t: string, n: string) => void;
+type StateType = PfcCalculated & {
+  aim: Aim;
 };
 
 export const PFCCalculate: React.FC<Props> = ({
   onSelect,
-  gender,
-  activity,
-  aim,
+  pfc,
+  onCalculated = _noop,
 }) => {
+  const [state, setState] = useState<StateType>({} as StateType);
+  const [calculate, { loading }] = useCalculatePfcLazyQuery({
+    onCompleted: ({ calculatePFC }) => {
+      const { __typename, ...restData } = calculatePFC || {
+        calculateFormula: {},
+      };
+      const {
+        calculateFormula: { __typename: formulaTypeName, ...formula },
+      } = restData;
+      setState({
+        ...restData,
+        calculateFormula: formula,
+        aim: pfc.aim,
+      } as StateType);
+      onCalculated(true);
+    },
+    onError: ({ message }) => {
+      setMessage({ type: 'error', message });
+    },
+  });
+
+  const handleCalculate = () => {
+    calculate({
+      variables: {
+        data: pfc,
+      },
+    });
+  };
+
   const handleChange = (type: string) => (value, name) => onSelect(type, name);
 
-  const disableCalculate = !gender || !activity || !aim;
+  const disableCalculate = !pfc.gender || !pfc.activity || !pfc.aim;
   return (
-    <div className="row pt-6">
+    <div className={classnames('row pt-6', { pending: loading })}>
       <h4>{gfPFC.marathonTitle}</h4>
 
       <div>
@@ -49,16 +77,16 @@ export const PFCCalculate: React.FC<Props> = ({
         <div>
           <UICheckbox
             label={gfCommon.men}
-            name="men"
+            name={Gender.Men}
             onSelect={handleChange('gender')}
-            checked={gender === 'men'}
+            checked={pfc.gender === Gender.Men}
             className="mb-4"
           />
           <UICheckbox
             label={gfCommon.women}
-            name="women"
+            name={Gender.Women}
             onSelect={handleChange('gender')}
-            checked={gender === 'women'}
+            checked={pfc.gender === Gender.Women}
             className="mb-4"
           />
         </div>
@@ -73,7 +101,7 @@ export const PFCCalculate: React.FC<Props> = ({
               key={key}
               name={key}
               onSelect={handleChange('activity')}
-              checked={activity === key}
+              checked={pfc.activity === key}
               className="mb-4"
             />
           ))}
@@ -89,7 +117,7 @@ export const PFCCalculate: React.FC<Props> = ({
               key={key}
               name={key}
               onSelect={handleChange('aim')}
-              checked={aim === key}
+              checked={pfc.aim === key}
               className="mb-4"
             />
           ))}
@@ -97,23 +125,25 @@ export const PFCCalculate: React.FC<Props> = ({
       </div>
 
       <div className="flex justify-center-m">
-        <UIButton className="mt-6" disabled={disableCalculate} round>
+        <UIButton
+          className="mt-6"
+          disabled={disableCalculate}
+          onClick={handleCalculate}
+          round
+        >
           {gfCommon.calculate}
         </UIButton>
       </div>
 
-      <h4 className="mt-8 mb-4">{`${gfCommon.results}:`}</h4>
-      <div className={s.pfcResult}>
-        <PFCCalculateResult {...MOCK_RESULT} />
-        <PFCChart
-          recommendCal={MOCK_RESULT.recommendCal}
-          type={MOCK_RESULT.type}
-          calculate={MOCK_RESULT.calculate}
-          dailyProtein={MOCK_RESULT.dailyProtein}
-          dailyFats={MOCK_RESULT.dailyFats}
-          dailyCarbs={MOCK_RESULT.dailyCarbs}
-        />
-      </div>
+      {!_isEmpty(state) && (
+        <>
+          <h4 className="mt-8 mb-4">{`${gfCommon.results}:`}</h4>
+          <div className={s.pfcResult}>
+            <PFCCalculateResult {...state} />
+            <PFCChart {...state} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

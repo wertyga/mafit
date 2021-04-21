@@ -1,5 +1,4 @@
-import { getNoun } from 'utils/string';
-import { AIM_TYPES } from 'types/pfc';
+import { Aim, Activty } from 'graphql/types';
 
 export const gfPFC = {
   marathonTitle: 'Расчет суточной нормы калорий и БЖУ (белки, жиры, углеводы)',
@@ -7,25 +6,27 @@ export const gfPFC = {
   physicalActivity: 'Коэффициент физической активности',
   chooseAim: 'Выберите вашу цель.',
   aims: {
-    [AIM_TYPES.LOOSE_FAT]: 'Сбросить вес',
-    [AIM_TYPES.GET_MUSCLES]: 'Набрать мышечную массу',
-    [AIM_TYPES.SUSTENANCE]: 'Поддержать вес',
+    [Aim.LooseFat]: 'Сбросить вес',
+    [Aim.GetMuscles]: 'Набрать мышечную массу',
+    [Aim.Sustenance]: 'Поддержать вес',
   },
   activities: {
-    low: '1. 2 Низкая активность (тренировок мало или они отсутствуют)',
-    little: '1. 38 Малая активность (легкие тренировки 1-3 раза в неделю)',
-    middle:
+    [Activty.Low]:
+      '1. 2 Низкая активность (тренировок мало или они отсутствуют)',
+    [Activty.Little]:
+      '1. 38 Малая активность (легкие тренировки 1-3 раза в неделю)',
+    [Activty.Middle]:
       '1. 55 Средняя активность (среднеинтенсивные тренировки 3-5 раз в неделю)',
-    high:
+    [Activty.High]:
       '1. 73 Высокая активность (физическая работа и интенсивные тренировки 6-7 раз в неделю)',
-    ultimate:
+    [Activty.Utimate]:
       '1. 9 Предельная активность (физическая работа и очень интенсивные тренировки/занятия спортом)',
   },
 
   recommendations: {
-    [AIM_TYPES.LOOSE_FAT]: 'Рекомендация для потери веса',
-    [AIM_TYPES.GET_MUSCLES]: 'Рекомендация для набору мышечной массы',
-    [AIM_TYPES.SUSTENANCE]: 'Рекомендация для поддержания веса',
+    [Aim.LooseFat]: 'Рекомендация для потери веса',
+    [Aim.GetMuscles]: 'Рекомендация для <br /> набора мышечной массы',
+    [Aim.Sustenance]: 'Рекомендация для поддержания веса',
   },
   dailyCal: 'Суточная норма калорий',
   byFormula: (amount: number) => `по формуле Харриса-Бенедикта ${amount} ккал`,
@@ -45,6 +46,6 @@ export const gfPFC = {
   },
 };
 
-export const getRecommendationCal = (type: AIM_TYPES, amount: number) => {
+export const getRecommendationCal = (type: Aim, amount: number) => {
   return `${gfPFC.recommendations[type]} ${amount} ккал`;
 };

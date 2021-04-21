@@ -1,9 +1,6 @@
 import { UserAction, UserState, UserTypes } from 'types/user';
 
-const initialState = {
-  token: 'AssTits', // MOCK
-  username: '',
-};
+const initialState = {} as UserState;
 
 export const userStore = (
   state: UserState = initialState,

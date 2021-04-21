@@ -6,14 +6,14 @@ let apolloClient;
 
 export const createApolloClient = () =>
   new ApolloClient({
-    ssrMode: true,
+    ssrMode: typeof window === 'undefined',
     link: createUploadLink({
       uri: process.env.API_GATEWAY,
     }),
     cache: new InMemoryCache(),
   });
 
-export const initializeApollo = (initialState = null) => {
+export const initializeApollo = (initialState = null): ApolloClient<any> => {
   const _apolloClient = apolloClient ?? createApolloClient();
   if (initialState) {
     const existingCache = _apolloClient.extract();

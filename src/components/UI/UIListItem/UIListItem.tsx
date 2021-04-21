@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import _noop from 'lodash/noop';
 import classnames from 'classnames';
+import { gfTraining } from 'goldfish/gfTraining';
 import { getDateMonth } from 'utils/date';
 import { UIIcon } from 'components/UI/UIIcons/UIIcon';
 
 import { ClassName } from 'types/root';
+import { Training_Statuses } from 'graphql/types';
 
 import s from './styles.module.css';
 
@@ -12,7 +14,7 @@ type Props = {
   date?: string;
   title: string;
   description?: string;
-  status?: any;
+  status?: Training_Statuses;
   className?: ClassName;
   onOpen?: (o?: boolean) => void;
   scrollOpen?: boolean;
@@ -68,7 +70,7 @@ export const UIListItem: React.FC<Props> = ({
               <div className={s.title}>{title}</div>
               <div className={s.description}>{description}</div>
             </div>
-            <div className={s.status}>{status}</div>
+            <div className={s.status}>{gfTraining.status[status]}</div>
             <UIIcon icon="close" className={s.closeMobileIcon} />
           </div>
           {isOpen && <UIIcon icon="closeCircle" className={s.closeIconDesk} />}

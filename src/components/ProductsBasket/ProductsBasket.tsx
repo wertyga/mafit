@@ -5,7 +5,7 @@ import { gfProductsBasket } from 'goldfish/gfProductsBasket';
 import { gfTraining } from 'goldfish/gfTraining';
 
 import { ProductBasket } from 'types/productBasket';
-import { TRAINING_STATUSES } from 'types/training';
+import { Training_Statuses } from 'graphql/types';
 
 import { ProductsBasketItem } from './ProductsBasketItem/ProductsBasketItem';
 
@@ -46,7 +46,7 @@ export const ProductsBasket: React.FC<Props> = ({ foodstuffs = MOCK }) => {
       title={gfProductsBasket.titleItemList}
       description={gfProductsBasket.titleItemDescription}
       date={new Date().toString()}
-      status={gfTraining.status[TRAINING_STATUSES.LOCKED]}
+      status={gfTraining.status[Training_Statuses.Locked]}
       scrollOpen
     >
       <div className="row">

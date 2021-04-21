@@ -50,8 +50,15 @@
   cursor: pointer;
 }
 
+.text-center {
+  text-align: center;
+}
+
 @media screen and (max-width: 800px) {
   .justify-center-m {
     justify-content: center;
+  }
+  .hide-m {
+    display: none;
   }
 }

@@ -1,10 +1,11 @@
 import { PFCCalculateFormulaType } from 'types/pfc';
+import { PfcCalculateFormula } from 'graphql/types';
 
 export const pfcPercentage = (
   dailyProtein: number,
   dailyFats: number,
   dailyCarbs: number,
-  calculate: PFCCalculateFormulaType
+  calculate: PfcCalculateFormula
 ) => {
   const protein = calculate.protein * dailyProtein;
   const fats = calculate.fats * dailyProtein;

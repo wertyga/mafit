@@ -3,7 +3,6 @@ import { gfTraining } from 'goldfish/gfTraining';
 import { UIVideo } from 'components/UI/UIVideo/UIVideo';
 import { UIListItem } from 'components/UI/UIListItem/UIListItem';
 import { Motivation } from 'components/Motivation/Motivation';
-import { ArticleItem } from 'components/Article/ArticleItem';
 import { Training } from 'graphql/types';
 
 import { TrainingItemMenu } from '../TrainingItemMenu/TrainingItemMenu';
@@ -52,7 +51,7 @@ export const TrainingListItem: React.FC<Training> = trainingProps => {
       title={title}
       description={description}
       date={date}
-      status={gfTraining.status[status]}
+      status={status}
       scrollOpen
     >
       <div className="row mb-9">{!!video && <UIVideo src={video} />}</div>

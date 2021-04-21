@@ -1,21 +1,29 @@
-query getMarathon($id: String!) {
-	marathon(id: $id) {
+query getMarathon($id: String!, $userId: ID!) {
+	marathon(id: $id, userId: $userId) {
 		id
 		title
 		description
 		dateStart
 		dateEnd
-		progressIn
+		startMarathon {
+			id
+			date
+			status
+			type
+		}
+		progress {
+			id
+			trainingId
+			date
+			status
+			type
+		}
 		trainings {
 			id
+			date
 			title
 			description
-			video
 			status
-			date
-			dayFood {
-				id
-			}
 		}
 	}
 }

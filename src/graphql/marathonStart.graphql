@@ -1,0 +1,37 @@
+fragment MarathonStartFragment on MarathonStart {
+	id
+	date
+	status
+	files {
+		front
+		rear
+		right
+		left
+		video
+	}
+	pfc {
+		gender
+		activity
+		aim
+	}
+	manData {
+		height
+		age
+		weight
+		abs
+		butt
+		chest
+	}
+}
+
+query getStartMarathon($marathonId: ID!, $userId: ID!) {
+	getStartMarathon(marathonId: $marathonId, userId: $userId) {
+		...MarathonStartFragment
+	}
+}
+
+mutation saveStartMarathon($data: MarathonStartInput) {
+	saveStartMarathon(data: $data) {
+		...MarathonStartFragment
+	}
+}

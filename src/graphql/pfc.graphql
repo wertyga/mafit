@@ -1,0 +1,15 @@
+query calculatePFC($data: PFCInput) {
+	calculatePFC(data: $data) {
+		calculateFormula {
+			fats
+			protein
+			carbs
+		}
+		dailyProtein
+		dailyFats
+		dailyCarbs
+		minCal
+		normaCal
+		recommendCal
+	}
+}

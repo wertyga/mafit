@@ -11,3 +11,10 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    min-height: initial;
+    padding: var(--space-3) 0;
+  }
+}

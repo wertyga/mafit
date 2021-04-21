@@ -1,17 +1,14 @@
 import React, { ChangeEvent } from 'react';
 import { gfMarathon } from 'goldfish/gfMarathon';
+
+import { ManData } from 'graphql/types';
+
 import { MarathonManDataItem } from './MarathonManDataItem/MarathonManDataItem';
 import { MarathonBodyData } from './MarathonBodyData/MarathonBodyData';
 
 export type Props = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  state: Partial<
-    Record<
-      | keyof typeof gfMarathon.manData.commonData
-      | keyof typeof gfMarathon.manData.bodyData,
-      string
-    >
-  >;
+  state: ManData;
 };
 
 export const MarathonManData: React.FC<Props> = ({ onChange, state }) => {

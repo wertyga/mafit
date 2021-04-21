@@ -8,9 +8,13 @@ import s from './styles.module.css';
 
 type Props = {
   onChange: (i: File, p: string, n: string) => void;
+  previews?: Record<string, string>;
 };
 
-export const MarathonUpload: React.FC<Props> = ({ onChange }) => {
+export const MarathonUpload: React.FC<Props> = ({
+  onChange,
+  previews = {},
+}) => {
   const handleChange = (image: File, name: string, preview: string) => {
     onChange(image, preview, name);
   };
@@ -24,21 +28,25 @@ export const MarathonUpload: React.FC<Props> = ({ onChange }) => {
             title={gfMarathon.photoFront}
             name="front"
             onChange={handleChange}
+            preview={previews.front}
           />
           <MarathonUploadItem
             title={gfMarathon.photoRear}
             name="rear"
             onChange={handleChange}
+            preview={previews.rear}
           />
           <MarathonUploadItem
             title={gfMarathon.photoRight}
             name="right"
             onChange={handleChange}
+            preview={previews.right}
           />
           <MarathonUploadItem
             title={gfMarathon.photoLeft}
             name="left"
             onChange={handleChange}
+            preview={previews.left}
           />
         </div>
         <Link href="#">
@@ -48,7 +56,12 @@ export const MarathonUpload: React.FC<Props> = ({ onChange }) => {
 
       <h4>{gfMarathon.uploadVideoBefore}</h4>
       <div className={s.video}>
-        <Upload name="video" onChange={handleChange} video />
+        <Upload
+          name="video"
+          onChange={handleChange}
+          video
+          urlSrc={previews.video}
+        />
         <Link href="#">
           <a className={`mt-3 ${s.example}`}>{gfMarathon.videoExample}</a>
         </Link>
